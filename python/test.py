@@ -1,15 +1,8 @@
-keys = input().split()
-vales = map(int,input().split())
+a = input().split()
+count = 0
 
-dct = dict(zip(keys,vales))
+for word in a:
+    if word.strip(',.') == 'the':
+        count += 1
 
-target = []
-del dct['delta']
-for key,val in dct.items():
-    if val == 30:
-        target.append(key)
-
-for i in target:
-    del dct[i]
-
-print(dct)
+print(count)

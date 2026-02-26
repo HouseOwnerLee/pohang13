@@ -14,9 +14,13 @@ while True:
     lst.append(dct)
     print()
 
+total = 0
 
-print("\n제품코드    제품명    수량    단가    판매금액")
+print("\n\t\t\t *** 제품관리 ***")
+print("제품코드    제품명    수량    단가    판매금액")
 print("---------------------------------------------")
 for dct in lst:
-    print("%4s    %4s    %4d    %4d    %6d" % (dct['code'], dct['name'], dct['su'], dct['cost'], dct['total']))
+    print("%4s    %4s    %4d    %4d    %6s" % (dct['code'], dct['name'], dct['su'], dct['cost'], format(dct['total'],',')))
+    total += dct['total']
 print("---------------------------------------------")
+print("총 금액 : %s".rjust(32) % format(total,','))
