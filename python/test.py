@@ -1,14 +1,15 @@
-i = 1
+keys = input().split()
+vales = map(int,input().split())
 
-odd = 0
-even = 0
+dct = dict(zip(keys,vales))
 
-while i < 101:
-    if i % 2 == 0:
-        even += i
-    else:
-        odd += i
-    i+=1
+target = []
+del dct['delta']
+for key,val in dct.items():
+    if val == 30:
+        target.append(key)
 
-print("홀수의 합:",odd)
-print("짝수의 합:",even)
+for i in target:
+    del dct[i]
+
+print(dct)
