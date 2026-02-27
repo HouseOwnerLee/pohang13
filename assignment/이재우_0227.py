@@ -5,12 +5,15 @@ print()
 if num1 > num2:
     num1, num2 = num2, num1
 
-primes = []
+cnt = 0
 for num in range(num1, num2 + 1):
     if num < 2:
         continue
     elif num == 2:
-        primes.append(num)
+        print("%3d" % num, end=' ')
+        cnt += 1
+        if cnt % 10 == 0:
+            print()
     else:
         if num % 2 == 0:
             continue
@@ -18,14 +21,11 @@ for num in range(num1, num2 + 1):
             if num % i == 0:
                 break
         else:
-            primes.append(num)
+            print("%3d" % num, end=' ')
+            cnt += 1
+            if cnt % 10 == 0:
+                print()
 
-cnt = 0
-for prime in primes:
-    print("%3d" % prime, end=' ')
-    cnt += 1
-    if cnt % 10 == 0:
-        print()
 if cnt % 10 != 0:
     print()
-print("소수의 갯수 : %d"%len(primes))
+print("소수의 갯수 : %d"%cnt)
