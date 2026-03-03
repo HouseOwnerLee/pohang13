@@ -1,7 +1,9 @@
 ﻿# 제품코드, 제품명, 수량, 단가를 입력받아 금액을 계산하여 출력하는 프로그램
 # 입력 받은 데이터는 sangpum_data.txt에 csv형식으로 저장
+import csv
 
-fp = open('sangpum_data.txt','w', encoding='utf-8') # w:쓰기, r:읽기, a:추가
+fp = open('sangpum_data.csv', 'w', encoding='utf-8', newline='') # w:쓰기, r:읽기, a:추가, b:바이너리
+wr = csv.writer(fp,delimiter=',', quotechar='"',quoting=csv.QUOTE_ALL)
 lst = []
 
 while True:
@@ -16,7 +18,8 @@ while True:
     dct['total'] = dct['su'] * dct['cost']
 
     lst.append(dct)
-    fp.write(dct['code'] + ',' + dct['name'] + ',' + str(dct['su']) + ',' + str(dct['cost']) + '\n')
+    wr.writerow((dct['code'],dct['name'],dct['su'],dct['cost'],dct['total']))
+
     print()
 
 fp.close()

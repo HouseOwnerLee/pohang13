@@ -1,16 +1,17 @@
-﻿import os
+﻿import os, csv
 
-if os.path.exists('sangpum_data.txt'):  # 경로상에 해당 파일이 존재하는지 확인
-    fp = open('sangpum_data.txt','r', encoding='utf-8')
+if os.path.exists('sangpum_data.csv'):  # 경로상에 해당 파일이 존재하는지 확인
+    fp = open('sangpum_data.csv', 'r', encoding='utf-8', newline='')
+    reader = list(csv.reader(fp))
     lst = []
-    for line in fp:
+
+    for line in reader:
         dct = {}
-        res = line.strip('\n').split(",")
-        dct["code"] = res[0]
-        dct["name"] = res[1]
-        dct["su"] = int(res[2])
-        dct["cost"] = int(res[3])
-        dct["total"] = int(res[4])
+        dct["code"] = line[0]
+        dct["name"] = line[1]
+        dct["su"] = int(line[2])
+        dct["cost"] = int(line[3])
+        dct["total"] = int(line[4])
 
         lst.append(dct)
 
