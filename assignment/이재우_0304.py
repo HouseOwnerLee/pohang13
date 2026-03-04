@@ -1,6 +1,7 @@
 ﻿import csv
 import os
 
+# 메뉴 출력하는 함수
 def menu_title():
     print("*** 성적관리 ***")
     print("1. 성적정보 입력")
@@ -11,6 +12,7 @@ def menu_title():
     print("6. 프로그램 종료")
     print()
 
+# 등급을 반환하는 함수
 def get_rank(avg):
     if avg >= 90:
         return "수"
@@ -23,6 +25,7 @@ def get_rank(avg):
     else:
         return "가"
 
+# 학생 1명의 성적을 입력받는 함수
 def input_sungjuk():
     if os.path.exists("sungjuk_data.csv"):
         fp = open("sungjuk_data.csv","a",encoding="utf-8",newline="")
@@ -32,6 +35,7 @@ def input_sungjuk():
         fp = open("sungjuk_data.csv","a",encoding="utf-8",newline="")
         fieldnames = ["code","name","kor","eng","math","total","avg","rank"]
         wr = csv.DictWriter(fp, fieldnames=fieldnames)
+        # 파일이 존재하지 않으면 헤더를 추가해줌
         wr.writeheader()
 
     dct = {}
@@ -44,18 +48,23 @@ def input_sungjuk():
     dct["avg"] = dct["total"] / 3
     dct["rank"] = get_rank(dct["avg"])
 
+    # 파일에 학생 정보 쓰기
     wr.writerow(dct)
     fp.close()
     print("\n성적 입력 완료\n")
 
+# 저장된 학생들의 성적을 출력하는 함수
 def print_sungjuk():
     if os.path.exists("sungjuk_data.csv"):
         fp = open("sungjuk_data.csv","r",encoding="utf-8",newline="")
         lst = list(csv.DictReader(fp))
+
+        # 학생 정보가 없는 경우 출력할 정보가 없으므로 함수 반환
         if not lst:
             print("\n학생 정보가 없음\n")
             fp.close()
             return
+
         avg_sum = 0
         print("\n\t\t\t***성적표***")
         print("==========================================")
@@ -74,6 +83,7 @@ def print_sungjuk():
     else:
         print("\n출력할 성적 정보가 없음!!!\n")
 
+# 학생 정보 조회하는 함수
 def search_sungjuk():
     if os.path.exists("sungjuk_data.csv"):
         fp = open("sungjuk_data.csv","r",encoding="utf-8",newline="")
@@ -99,6 +109,7 @@ def search_sungjuk():
     else:
         print("\n출력할 성적 정보가 없음!!!\n")
 
+# 학생의 성적을 수정하는 함수
 def update_sungjuk():
     if os.path.exists("sungjuk_data.csv"):
         fp = open("sungjuk_data.csv","r",encoding="utf-8",newline="")
@@ -129,7 +140,7 @@ def update_sungjuk():
     else:
         print("\n성적 정보가 없음!!!\n")
 
-
+# 학생 정보를 삭제하는 함수
 def delete_sungjuk():
     if os.path.exists("sungjuk_data.csv"):
         fp = open("sungjuk_data.csv","r",encoding="utf-8",newline="")
