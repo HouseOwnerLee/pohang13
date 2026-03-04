@@ -30,7 +30,7 @@ def input_sungjuk():
         wr = csv.DictWriter(fp, fieldnames=fieldnames)
     else:
         fp = open("sungjuk_data.csv","a",encoding="utf-8",newline="")
-        fieldnames = fieldnames = ["code","name","kor","eng","math","total","avg","rank"]
+        fieldnames = ["code","name","kor","eng","math","total","avg","rank"]
         wr = csv.DictWriter(fp, fieldnames=fieldnames)
         wr.writeheader()
 
